@@ -3,42 +3,44 @@ import * as postsDao from './posts-dao.js'
 const createPost = async (req, res) => {
     const newPost = req.body;
     //newPost._id = (new Date()).getTime() + '';
+    
     newPost.username = "Gwen Stacy";
     newPost.likes = 0;
     newPost.dislikes = 0;
     newPost.liked = false;
     newPost.disliked = false;
-    newPost.createAt = "1 min",
-    newPost.title = "Untitled";
+    // newPost.createAt = "1 min",
+    // newPost.title = "Untitled";
+    newPost.title = newPost.title || "Untitled";
     newPost.reposts = 0;
     newPost.replies = 0;
-    const insertedpost = await postsDao.createpost(newPost); // actual post inserted in database with DAO's createpost
-    res.json(insertedpost);
+    const insertedPost = await postsDao.createPost(newPost); // actual post inserted in database with DAO's createpost
+    res.json(insertedPost);
 }
 
-const findposts = async (req, res) => {
-    const posts = await postsDao.findposts()
+const findPosts = async (req, res) => {
+    const posts = await postsDao.findPosts()
     res.json(posts);
  }
  
-const updatepost = async (req, res) => {  
+const updatePost = async (req, res) => {  
     const postdIdToUpdate = req.params.pid;
     const updates = req.body;
-    const status = await postsDao.updatepost(postdIdToUpdate, updates);
+    const status = await postsDao.updatePost(postdIdToUpdate, updates);
     res.json(status);
 }
 
-const deletepost = async (req, res) => {
+const deletePost = async (req, res) => {
     const postdIdToDelete = req.params.pid;
-    const status = await postsDao.deletepost(postdIdToDelete); //success or failure status deleting record from database
+    const status = await postsDao.deletePost(postdIdToDelete); //success or failure status deleting record from database
     res.json(status);
 }
 
 const PostsController = (app) =>{
     app.post('/api/posts', createPost);
-    app.get('/api/posts', findposts);
-    app.put('/api/posts/:pid', updatepost);
-    app.delete('/api/posts/:pid', deletepost);
+    app.get('/api/posts', findPosts);
+    app.put('/api/posts/:pid', updatePost);
+    app.delete('/api/posts/:pid', deletePost);
 }
 
 export default PostsController;

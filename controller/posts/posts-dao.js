@@ -1,6 +1,6 @@
 import postsModel from './posts-model.js';
 
-export const findposts  = ()          => postsModel.find();
-export const createpost = (post)      => postsModel.create(post);
-export const deletepost = (pid)       => postsModel.deleteOne({_id: pid});
-export const updatepost = (pid, post) => postsModel.updateOne({_id: pid}, {$set: post})
+export const findPosts  = ()          => postsModel.find();
+export const createPost = (post)      => postsModel.create(post);
+export const deletePost = (pid)       => postsModel.deleteOne({_id: pid});
+export const updatePost = (pid, post) => postsModel.updateOne({_id: pid}, {$set: post})
