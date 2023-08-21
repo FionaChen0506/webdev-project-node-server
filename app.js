@@ -3,6 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import PostsController from './controller/posts/posts-controller.js';
 import session from "express-session";
+import UserController from './controller/users/users-controller.js';
+import AuthController from './controller/users/auth-controller.js';
 
 
 import mongoose from "mongoose";
@@ -52,6 +54,8 @@ const port = process.env.PORT || 4000;
 
 
 PostsController(app);
+UserController(app);
+AuthController(app);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
