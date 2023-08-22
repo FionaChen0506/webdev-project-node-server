@@ -4,7 +4,7 @@ const usersSchema = new mongoose.Schema({
   password: { type: String, required: true },
   firstName: String,
   lastName: String,
-  role: {
+  role: { 
     type: String,
     enum: ["admin", "verified", "regular"],
     default: "regular" // Default role if not specified
